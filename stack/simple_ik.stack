@@ -1,0 +1,80 @@
+solver_options:
+    regularization: 1e-3
+    back_end: "qpoases"
+
+stack:
+    - ["LFoot", "RFoot"]
+    - ["COM", "BaseOrientation", "Gaze", "Ree", "Lee"]
+    - ["Postural"]
+
+    
+constraints: ["JointLimits", "VelocityLimits"]
+
+
+LFoot:
+    type: "Cartesian"
+    distal_link: "left_sole_link"
+    base_link: "world"
+    lambda: 0.1
+
+RFoot:
+    type: "Cartesian"
+    distal_link: "right_sole_link"
+    base_link: "world"
+    lambda: 0.1
+    
+    
+COM:
+    type: "Com"
+    lambda: 0.1
+    
+
+BaseOrientation:
+    type: "Cartesian"
+    distal_link: "base_link"
+    base_link: "world"
+    lambda: 0.1
+    indices: [3,4,5]
+   
+Ree:
+    type: "Cartesian"
+    distal_link: "arm_right_7_link"
+    base_link: "world"
+    lambda: 0.1
+
+Lee:
+    type: "Cartesian"
+    distal_link: "arm_left_7_link"
+    base_link: "world"
+    lambda: 0.1
+    
+Ree:
+    type: "Cartesian"
+    distal_link: "gripper_right_inner_double_link"
+    base_link: "world"
+    lambda: 0.1
+    
+Gaze:
+    type: "Gaze"
+    distal_link: "rgbd_rgb_frame"
+    base_link: "base_link"
+    lambda: 0.1
+    
+Postural:
+    type: "Postural"
+    lambda: 0.1
+    use_inertia: true
+    weight:
+        reference@v0: 0.0
+        reference@v1: 0.0
+        reference@v2: 0.0
+        reference@v3: 0.0
+        reference@v4: 0.0
+        reference@v5: 0.0
+    
+JointLimits:
+    type: "JointLimits"
+
+VelocityLimits:
+    type: "VelocityLimits"
+    

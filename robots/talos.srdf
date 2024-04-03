@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="talos">
+
+  <group name="base">
+    <link name="base_link"/>
+  </group>
+  
+  <group name="TORSO">
+    <chain base_link="base_link" tip_link="torso_2_link"/>
+  </group>
+  
+  <group name="LEE">
+    <chain base_link="torso_2_link" tip_link="arm_left_7_link"/>
+  </group>
+  
+  <group name="REE">
+    <chain base_link="torso_2_link" tip_link="arm_right_7_link"/>
+  </group>
+  
+  <group name="HEAD">
+    <chain base_link="torso_2_link" tip_link="head_2_link"/>
+  </group>
+  
+  <group name="LFOOT">
+    <chain base_link="base_link" tip_link="left_sole_link"/>
+  </group>
+  
+  <group name="RFOOT">
+    <chain base_link="base_link" tip_link="right_sole_link"/>
+  </group>
+  
+  
+  <group name="chains">
+    <group name="TORSO"/>
+    <group name="HEAD"/>
+    <group name="LEE"/>
+    <group name="REE"/>
+    <group name="LFOOT"/>
+    <group name="RFOOT"/>
+  </group>
+  
+  <!--group_state group="chains" name="home">
+        <joint name="arm_left_1_joint" value="0"/>
+	<joint name="arm_left_2_joint" value="1.5"/>
+        <joint name="arm_left_3_joint" value="1.54"/>
+        <joint name="arm_left_4_joint" value="1.75"/>
+        <joint name="arm_left_5_joint" value="0"/>
+        <joint name="arm_left_6_joint" value="0"/>
+        <joint name="arm_left_7_joint" value="0"/>
+        <joint name="arm_right_1_joint" value="0"/>
+        <joint name="arm_right_2_joint" value="1.5"/>
+        <joint name="arm_right_3_joint" value="1.54"/>
+        <joint name="arm_right_4_joint" value="1.75"/>
+        <joint name="arm_right_5_joint" value="0"/>
+        <joint name="arm_right_6_joint" value="0"/>
+        <joint name="arm_right_7_joint" value="0"/>
+        <joint name="head_1_joint" value="0"/>
+        <joint name="head_2_joint" value="0"/>
+        <joint name="torso_lift_joint" value="0"/>
+        <joint name="wheel_front_left_joint" value="0"/>
+        <joint name="wheel_front_right_joint" value="0"/>
+  </group_state-->
+  
+</robot>

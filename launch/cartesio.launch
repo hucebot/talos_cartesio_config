@@ -1,0 +1,74 @@
+<launch>
+	<arg name="enable_crane" default="false"/>
+	<arg name="test"  default="false"/>
+  	<arg name="foot_collision"  default="default"/>
+	<arg name="disable_gazebo_camera"  default="true"/>
+	
+	<!-- Robot description -->
+  	<param name=robot_description
+    	command="$(find xacro)/xacro --inorder
+    	'$(find talos_cartesio_config)/robots/talos.urdf.xacro'
+    	enable_crane:=$(arg enable_crane)
+    	test:=$(arg test)
+    	foot_collision:=$(arg foot_collision)
+    	disable_gazebo_camera:=$(arg disable_gazebo_camera)" />
+	
+	<param name="robot_description_semantic" textfile="$(find talos_cartesio_config)/robots/talos.srdf"/>
+    
+	<param name="cartesian/problem_description" textfile="$(find talos_cartesio_config)/stack/simple_ik.stack"/>
+	
+<rosparam param="cartesian/home">
+  reference_v0: -0.04740613082949944
+  reference_v1: 2.0038018716509842e-05
+  reference_v2: -0.1514582786711821
+  reference_v3: -6.753151775338311e-12
+  reference_v4: 2.1065529758299734e-12
+  reference_v5: 7.003654999905827e-13
+  leg_left_1_joint: -7.94464787047849e-13
+  leg_left_2_joint: -3.619964318427297e-05
+  leg_left_3_joint: -0.6898316711444555
+  leg_left_4_joint: 1.3311371331572148
+  leg_left_5_joint: -0.6413054620145101
+  leg_left_6_joint: 3.619964990352649e-05
+  leg_right_1_joint: -7.94464787047849e-13
+  leg_right_2_joint: -3.619964318427297e-05
+  leg_right_3_joint: -0.6898316711444555
+  leg_right_4_joint: 1.3311371331572148
+  leg_right_5_joint: -0.6413054620145101
+  leg_right_6_joint: 3.619964990352649e-05
+  torso_1_joint: 0.0002205888120137109
+  torso_2_joint: 0.027120105655840155
+  arm_left_1_joint: -0.03397840856227864
+  arm_left_2_joint: 0.3086614029301087
+  arm_left_3_joint: 0.03272967979826196
+  arm_left_4_joint: -1.0322427349026453
+  arm_left_5_joint: 0.004009140644162072
+  arm_left_6_joint: 0.00358625686761845
+  arm_left_7_joint: 0.02561515245675291
+  arm_right_1_joint: -0.03397840856227864
+  arm_right_2_joint: -0.3086614029301087
+  arm_right_3_joint: 0.03272967979826196
+  arm_right_4_joint: -1.0322427349026453
+  arm_right_5_joint: 0.004009140644162072
+  arm_right_6_joint: 0.00358625686761845
+  arm_right_7_joint: 0.02561515245675291
+  head_1_joint: -0.027120105662825997
+  head_2_joint: -0.0002205888117432746
+</rosparam>
+
+    
+	<arg name="rate" default="250.0"/>
+	<arg name="prefix" default=""/>
+	<include file="$(find cartesian_interface)/launch/cartesio.launch">
+		<arg name="rate" value="$(arg rate)"/>
+		<arg name="prefix" value="$(arg prefix)"/>
+		<arg name="is_model_floating_base" value="true"/>
+	</include>
+    
+	<arg name="gui" default="true"/>
+	<node if="$(arg gui)" type="rviz" name="rviz" pkg="rviz" output="screen" args="-d $(find talos_cartesio_config)/launch/simple_ik.rviz"/>
+    
+	<!-- RUN POSTURAL GUI -->
+	<node pkg="cartesian_interface" type="postural_gui" name="postural_gui"/>
+       
+</launch>

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="talos">
+
+
+<xacro:include filename="$(find talos_description)/robots/talos_full_no_grippers.urdf.xacro"/>
+
+<link name="world"/>
+  <joint name="reference" type="floating">
+    <parent link="world"/>
+    <child link="base_link"/>
+</joint>
+
+
+</robot>
