@@ -3,6 +3,7 @@
 	<arg name="test"  default="false"/>
   	<arg name="foot_collision"  default="default"/>
 	<arg name="disable_gazebo_camera"  default="true"/>
+	<arg name="stack"  default="simple_ik"/>
 	
 	<!-- Robot description -->
   	<param name=robot_description
@@ -15,7 +16,7 @@
 	
 	<param name="robot_description_semantic" textfile="$(find talos_cartesio_config)/robots/talos.srdf"/>
     
-	<param name="cartesian/problem_description" textfile="$(find talos_cartesio_config)/stack/simple_ik.stack"/>
+	<param name="cartesian/problem_description" textfile="$(find talos_cartesio_config)/stack/$(arg stack).stack"/>
 	
 <rosparam param="cartesian/home">
   reference_v0: -0.04740613082949944
@@ -63,10 +64,11 @@
 		<arg name="rate" value="$(arg rate)"/>
 		<arg name="prefix" value="$(arg prefix)"/>
 		<arg name="is_model_floating_base" value="true"/>
+		<arg name="world_frame_link" default="left_sole_link"/>
 	</include>
     
 	<arg name="gui" default="true"/>
-	<node if="$(arg gui)" type="rviz" name="rviz" pkg="rviz" output="screen" args="-d $(find talos_cartesio_config)/launch/simple_ik.rviz"/>
+	<node if="$(arg gui)" type="rviz" name="rviz" pkg="rviz" output="screen" args="-d $(find talos_cartesio_config)/launch/$(arg stack).rviz"/>
     
 	<!-- RUN POSTURAL GUI -->
 	<node pkg="cartesian_interface" type="postural_gui" name="postural_gui"/>

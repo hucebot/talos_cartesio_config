@@ -1,0 +1,112 @@
+solver_options:
+    regularization: 1e-3
+    back_end: "qpoases"
+
+stack:
+    - ["l_sole", "r_sole", "com", "mom", "Postural"]
+
+    
+constraints: ["DynamicFeasibility", "VelocityLimits", "LFURFlims", "LFLRFlims", "LFULFlims", "LFLLFlims", "RFURFlims", "RFLRFlims", "RFULFlims", "RFLLFlims"]
+
+l_sole:
+    lib_name: libcartesio_acceleration_support.so
+    type: "Cartesian"
+    lambda: 0.1
+    distal_link: "left_sole_link"
+
+r_sole:
+    lib_name: libcartesio_acceleration_support.so
+    type: "Cartesian"
+    lambda: 0.1
+    distal_link: "right_sole_link"
+
+mom:
+    lib_name: libcartesio_acceleration_support.so
+    type: "AngularMomentum"
+    lambda: 0.01
+    
+com:
+    lib_name: libcartesio_acceleration_support.so
+    type: "Com"
+    lambda: 0.1
+
+Postural:
+    lib_name: libcartesio_acceleration_support.so
+    type: "Postural"
+    lambda: 0.01   
+    remove_indices: [0, 1, 2, 3, 4, 5] 
+    weight: 0.001
+
+VelocityLimits:
+    lib_name: libcartesio_acceleration_support.so
+    type: "VelocityLimits"
+    
+DynamicFeasibility:
+    lib_name: libcartesio_acceleration_support.so
+    type: "DynamicFeasibility"
+    contacts:
+        - left_foot_upper_right
+        - left_foot_lower_right
+        - left_foot_upper_left
+        - left_foot_lower_left
+        - right_foot_upper_right
+        - right_foot_lower_right
+        - right_foot_upper_left
+        - right_foot_lower_left
+        
+LFURFlims:
+    lib_name: libcartesio_acceleration_support.so
+    type: "ForceLimits"
+    link: "left_foot_upper_right"
+    min: [-1000, -1000, -1000, 0., 0., 0.]
+    max: [1000, 1000, 1000, 0., 0., 0.]
+
+LFLRFlims:
+    lib_name: libcartesio_acceleration_support.so
+    type: "ForceLimits"
+    link: "left_foot_lower_right"
+    min: [-1000, -1000, -1000, 0., 0., 0.]
+    max: [1000, 1000, 1000, 0., 0., 0.]
+
+LFULFlims:
+    lib_name: libcartesio_acceleration_support.so
+    type: "ForceLimits"
+    link: "left_foot_upper_left"
+    min: [-1000, -1000, -1000, 0., 0., 0.]
+    max: [1000, 1000, 1000, 0., 0., 0.]
+
+LFLLFlims:
+    lib_name: libcartesio_acceleration_support.so
+    type: "ForceLimits"
+    link: "left_foot_lower_left"
+    min: [-1000, -1000, -1000, 0., 0., 0.]
+    max: [1000, 1000, 1000, 0., 0., 0.]
+
+RFURFlims:
+    lib_name: libcartesio_acceleration_support.so
+    type: "ForceLimits"
+    link: "right_foot_upper_right"
+    min: [-1000, -1000, -1000, 0., 0., 0.]
+    max: [1000, 1000, 1000, 0., 0., 0.]
+
+RFLRFlims:
+    lib_name: libcartesio_acceleration_support.so
+    type: "ForceLimits"
+    link: "right_foot_lower_right"
+    min: [-1000, -1000, -1000, 0., 0., 0.]
+    max: [1000, 1000, 1000, 0., 0., 0.]
+
+RFULFlims:
+    lib_name: libcartesio_acceleration_support.so
+    type: "ForceLimits"
+    link: "right_foot_upper_left"
+    min: [-1000, -1000, -1000, 0., 0., 0.]
+    max: [1000, 1000, 1000, 0., 0., 0.]
+
+RFLLFlims:
+    lib_name: libcartesio_acceleration_support.so
+    type: "ForceLimits"
+    link: "right_foot_lower_left"
+    min: [-1000, -1000, -1000, 0., 0., 0.]
+    max: [1000, 1000, 1000, 0., 0., 0.]
+
