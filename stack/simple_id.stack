@@ -6,7 +6,7 @@ stack:
     - ["l_sole", "r_sole", "LEE", "REE", "com", "base_orient", "postural"]
 
     
-constraints: ["DynamicFeasibility", "VelocityLimits", "LFURFlims", "LFURFc", "LFLRFlims", "LFLRFc", "LFULFlims", "LFULFc", "LFLLFlims", "LFLLFc", 
+constraints: ["DynamicFeasibility", "VelocityLimits", "JointLimits", "LFURFlims", "LFURFc", "LFLRFlims", "LFLRFc", "LFULFlims", "LFULFc", "LFLLFlims", "LFLLFc", 
 "RFURFlims", "RFURFc", "RFLRFlims", "RFLRFc", "RFULFlims", "RFULFc", "RFLLFlims", "RFLLFc"]
 
 l_sole:
@@ -79,6 +79,10 @@ postural:
 VelocityLimits:
     lib_name: libcartesio_acceleration_support.so
     type: "VelocityLimits"
+    
+JointLimits:
+    lib_name: libcartesio_acceleration_support.so
+    type: "JointLimits"
     
 DynamicFeasibility:
     lib_name: libcartesio_acceleration_support.so
