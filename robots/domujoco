@@ -1,0 +1,1 @@
+rosrun centauro_mujoco centauro_mujoco.py --urdf talos.urdf --simopt ../mujoco/config/options.xml --world ../mujoco/config/world.xml --ctrlcfg ../mujoco/config/talos.yaml --sites ../mujoco/config/sites.xml --name talos

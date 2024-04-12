@@ -1,0 +1,11 @@
+<sites>
+
+    <body name="imu_link">
+        <site name="imu_link"/>
+    </body>
+
+    <body name="base_link">
+        <site name="base_link"/>
+    </body>
+
+</sites>

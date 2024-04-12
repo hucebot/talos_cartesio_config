@@ -1,0 +1,16 @@
+<mujoco>
+    <compiler angle="radian" />
+    <option timestep="0.0002"/>
+    <size njmax="1000" nconmax="200"/>
+    <contact>
+        <exclude name="torso_1_exclude" body1="torso_1_link" body2="torso_2_link"/>
+        <exclude name="torso_2_exclude" body1="base_link" body2="torso_1_link"/>
+        <exclude name="torso_3_exclude" body1="base_link" body2="torso_2_link"/>
+
+        <exclude name="hip_1_exclude" body1="leg_left_1_link" body2="leg_left_3_link"/>
+        <exclude name="hip_2_exclude" body1="leg_right_1_link" body2="leg_right_3_link"/>
+
+        <exclude name="foot_1_exclude" body1="leg_left_4_link" body2="leg_left_6_link"/>
+        <exclude name="foot_2_exclude" body1="leg_right_4_link" body2="leg_right_6_link"/>
+    </contact>
+</mujoco>

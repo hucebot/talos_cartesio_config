@@ -61,7 +61,7 @@ Visualization Manager:
       Show Axes: false
       Show Descriptions: true
       Show Visual Aids: false
-      Update Topic: /arm_left_7_link_cartesian_marker_server/update
+      Update Topic: /foo_ee_left_cartesian_marker_server/update
       Value: true
     - Alpha: 1
       Class: rviz/RobotModel
@@ -503,7 +503,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 2.6376872062683105
+      Distance: 3.7057607173919678
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -511,17 +511,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: -0.31484708189964294
-        Y: 0.13380172848701477
-        Z: -0.36422088742256165
+        X: -0.29813459515571594
+        Y: -0.11666766554117203
+        Z: 0.27097439765930176
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.09979885071516037
+      Pitch: 0.20979902148246765
       Target Frame: <Fixed Frame>
-      Yaw: 0.4522134065628052
+      Yaw: 6.080395221710205
     Saved: ~
 Window Geometry:
   Displays:

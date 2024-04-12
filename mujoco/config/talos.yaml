@@ -1,0 +1,51 @@
+motor_pd:
+  arm_*_1_joint: [500, 30]
+  arm_*_2_joint: [500, 30]
+  arm_*_3_joint: [500, 30]
+  arm_*_4_joint: [500, 30]
+  arm_*_5_joint: [100, 10]
+  arm_*_6_joint: [100, 10]
+  arm_*_7_joint: [100, 10]
+  leg_*_1_joint: [3000, 60]
+  leg_*_2_joint: [3000, 60]
+  leg_*_3_joint: [3000, 60]
+  leg_*_4_joint: [3000, 60]
+  leg_*_5_joint: [3000, 60]
+  leg_*_6_joint: [3000, 60]
+  torso_*: [3000, 60]
+
+motor_vel:
+  j_wheel_*: [1]
+  neck_velodyne: [1]
+
+q_init:
+  leg_left_1_joint: -7.94464787047849e-13
+  leg_left_2_joint: -3.619964318427297e-05
+  leg_left_3_joint: -0.6898316711444555
+  leg_left_4_joint: 1.3311371331572148
+  leg_left_5_joint: -0.6413054620145101
+  leg_left_6_joint: 3.619964990352649e-05
+  leg_right_1_joint: -7.94464787047849e-13
+  leg_right_2_joint: -3.619964318427297e-05
+  leg_right_3_joint: -0.6898316711444555
+  leg_right_4_joint: 1.3311371331572148
+  leg_right_5_joint: -0.6413054620145101
+  leg_right_6_joint: 3.619964990352649e-05
+  torso_1_joint: 0.0002205888120137109
+  torso_2_joint: 0.027120105655840155
+  arm_left_1_joint: -0.03397840856227864
+  arm_left_2_joint: 0.3086614029301087
+  arm_left_3_joint: 0.03272967979826196
+  arm_left_4_joint: -1.0322427349026453
+  arm_left_5_joint: 0.004009140644162072
+  arm_left_6_joint: 0.00358625686761845
+  arm_left_7_joint: 0.02561515245675291
+  arm_right_1_joint: -0.03397840856227864
+  arm_right_2_joint: -0.3086614029301087
+  arm_right_3_joint: 0.03272967979826196
+  arm_right_4_joint: -1.0322427349026453
+  arm_right_5_joint: 0.004009140644162072
+  arm_right_6_joint: 0.00358625686761845
+  arm_right_7_joint: 0.02561515245675291
+  head_1_joint: -0.027120105662825997
+  head_2_joint: -0.0002205888117432746

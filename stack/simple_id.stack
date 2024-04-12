@@ -1,58 +1,76 @@
 solver_options:
-    regularization: 1e-3
-    back_end: "qpoases"
+    regularization: 1e-2
+    back_end: qpoases
 
 stack:
-    - ["l_sole", "r_sole", "LEE", "REE", "com", "base_orient", "postural"]
+    - [l_sole, r_sole, LEE, REE, com, base_orient, postural]
 
     
-constraints: ["DynamicFeasibility", "VelocityLimits", "JointLimits", "LFURFlims", "LFURFc", "LFLRFlims", "LFLRFc", "LFULFlims", "LFULFc", "LFLLFlims", "LFLLFc", 
-"RFURFlims", "RFURFc", "RFLRFlims", "RFLRFc", "RFULFlims", "RFULFc", "RFLLFlims", "RFLLFc"]
+constraints: 
+  - DynamicFeasibility
+  - VelocityLimits
+  - JointLimits
+  - LFURFlims
+  - LFURFc
+  - LFLRFlims
+  - LFLRFc
+  - LFULFlims
+  - LFULFc
+  - LFLLFlims
+  - LFLLFc 
+  - RFURFlims
+  - RFURFc
+  - RFLRFlims
+  - RFLRFc
+  - RFULFlims
+  - RFULFc
+  - RFLLFlims
+  - RFLLFc
 
 l_sole:
     lib_name: libcartesio_acceleration_support.so
-    type: "Cartesian"
+    type: Cartesian
     lambda: 0.1
-    distal_link: "left_sole_link"
+    distal_link: left_sole_link
 
 r_sole:
     lib_name: libcartesio_acceleration_support.so
-    type: "Cartesian"
+    type: Cartesian
     lambda: 0.1
-    distal_link: "right_sole_link"
+    distal_link: right_sole_link
     
 LEE:
     lib_name: libcartesio_acceleration_support.so
-    type: "Cartesian"
+    type: Cartesian
     lambda: 0.1
-    distal_link: "foo_ee_left"
+    distal_link: foo_ee_left
 
 REE:
     lib_name: libcartesio_acceleration_support.so
-    type: "Cartesian"
+    type: Cartesian
     lambda: 0.1
-    distal_link: "foo_ee_right"
+    distal_link: foo_ee_right
 
 mom:
     lib_name: libcartesio_acceleration_support.so
-    type: "AngularMomentum"
+    type: AngularMomentum
     lambda: 0.01
     
 base_orient:
     lib_name: libcartesio_acceleration_support.so
-    type: "Cartesian"
-    lambda: 0.1
-    distal_link: "base_link"
+    type: Cartesian
+    lambda: 0.01
+    distal_link: base_link
     indices: [3, 4, 5]
     
 com:
     lib_name: libcartesio_acceleration_support.so
-    type: "Com"
+    type: Com
     lambda: 0.1
 
 postural:
     lib_name: libcartesio_acceleration_support.so
-    type: "Postural"
+    type: Postural
     lambda: 0.1
     lambda2: 0.1   
     disabled_joints: 
@@ -78,15 +96,15 @@ postural:
 
 VelocityLimits:
     lib_name: libcartesio_acceleration_support.so
-    type: "VelocityLimits"
+    type: VelocityLimits
     
 JointLimits:
     lib_name: libcartesio_acceleration_support.so
-    type: "JointLimits"
+    type: JointLimits
     
 DynamicFeasibility:
     lib_name: libcartesio_acceleration_support.so
-    type: "DynamicFeasibility"
+    type: DynamicFeasibility
     contacts:
         - left_foot_upper_right
         - left_foot_lower_right
@@ -99,105 +117,105 @@ DynamicFeasibility:
         
 LFURFlims:
     lib_name: libcartesio_acceleration_support.so
-    type: "ForceLimits"
-    link: "left_foot_upper_right"
+    type: ForceLimits
+    link: left_foot_upper_right
     min: [-1000, -1000, -1000, 0., 0., 0.]
     max: [1000, 1000, 1000, 0., 0., 0.]
 
 LFURFc:
     lib_name: libcartesio_acceleration_support.so
-    type: "FrictionCone"
-    link: "left_foot_upper_right"
+    type: FrictionCone
+    link: left_foot_upper_right
     local: true
 
 LFLRFlims:
     lib_name: libcartesio_acceleration_support.so
-    type: "ForceLimits"
-    link: "left_foot_lower_right"
+    type: ForceLimits
+    link: left_foot_lower_right
     min: [-1000, -1000, -1000, 0., 0., 0.]
     max: [1000, 1000, 1000, 0., 0., 0.]
     
 LFLRFc:
     lib_name: libcartesio_acceleration_support.so
-    type: "FrictionCone"
-    link: "left_foot_lower_right"
+    type: FrictionCone
+    link: left_foot_lower_right
     local: true
 
 LFULFlims:
     lib_name: libcartesio_acceleration_support.so
-    type: "ForceLimits"
-    link: "left_foot_upper_left"
+    type: ForceLimits
+    link: left_foot_upper_left
     min: [-1000, -1000, -1000, 0., 0., 0.]
     max: [1000, 1000, 1000, 0., 0., 0.]
     
 LFULFc:
     lib_name: libcartesio_acceleration_support.so
-    type: "FrictionCone"
-    link: "left_foot_upper_left"
+    type: FrictionCone
+    link: left_foot_upper_left
     local: true
 
 LFLLFlims:
     lib_name: libcartesio_acceleration_support.so
-    type: "ForceLimits"
-    link: "left_foot_lower_left"
+    type: ForceLimits
+    link: left_foot_lower_left
     min: [-1000, -1000, -1000, 0., 0., 0.]
     max: [1000, 1000, 1000, 0., 0., 0.]
     
 LFLLFc:
     lib_name: libcartesio_acceleration_support.so
-    type: "FrictionCone"
-    link: "left_foot_lower_left"
+    type: FrictionCone
+    link: left_foot_lower_left
     local: true
 
 RFURFlims:
     lib_name: libcartesio_acceleration_support.so
-    type: "ForceLimits"
-    link: "right_foot_upper_right"
+    type: ForceLimits
+    link: right_foot_upper_right
     min: [-1000, -1000, -1000, 0., 0., 0.]
     max: [1000, 1000, 1000, 0., 0., 0.]
   
 RFURFc:
     lib_name: libcartesio_acceleration_support.so
-    type: "FrictionCone"
-    link: "right_foot_upper_right"
+    type: FrictionCone
+    link: right_foot_upper_right
     local: true
 
 RFLRFlims:
     lib_name: libcartesio_acceleration_support.so
-    type: "ForceLimits"
-    link: "right_foot_lower_right"
+    type: ForceLimits
+    link: right_foot_lower_right
     min: [-1000, -1000, -1000, 0., 0., 0.]
     max: [1000, 1000, 1000, 0., 0., 0.]
     
 RFLRFc:
     lib_name: libcartesio_acceleration_support.so
-    type: "FrictionCone"
-    link: "right_foot_lower_right"
+    type: FrictionCone
+    link: right_foot_lower_right
     local: true
     
 RFULFlims:
     lib_name: libcartesio_acceleration_support.so
-    type: "ForceLimits"
-    link: "right_foot_upper_left"
+    type: ForceLimits
+    link: right_foot_upper_left
     min: [-1000, -1000, -1000, 0., 0., 0.]
     max: [1000, 1000, 1000, 0., 0., 0.]
     
 RFULFc:
     lib_name: libcartesio_acceleration_support.so
-    type: "FrictionCone"
-    link: "right_foot_upper_left"
+    type: FrictionCone
+    link: right_foot_upper_left
     local: true
 
 RFLLFlims:
     lib_name: libcartesio_acceleration_support.so
-    type: "ForceLimits"
-    link: "right_foot_lower_left"
+    type: ForceLimits
+    link: right_foot_lower_left
     min: [-1000, -1000, -1000, 0., 0., 0.]
     max: [1000, 1000, 1000, 0., 0., 0.]
     
 RFLLFc:
     lib_name: libcartesio_acceleration_support.so
-    type: "FrictionCone"
-    link: "right_foot_lower_left"
+    type: FrictionCone
+    link: right_foot_lower_left
     local: true
 

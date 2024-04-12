@@ -1,0 +1,43 @@
+# model information
+XBotInterface:
+  urdf_path: $(rospack find talos_cartesio_config)/robots/talos.urdf
+  srdf_path: $(rospack find talos_cartesio_config)/robots/talos.srdf
+
+ModelInterface:
+  model_type: pin
+
+# hal
+xbotcore_device_configs:
+    sim: $PWD/hal/talos_mj.yaml
+
+# threads
+xbotcore_threads:
+    rt_main:  {sched: fifo , prio: 60, period: 0.001}
+    nrt_main: {sched: other, prio: 0 , period: 0.005}
+
+# plugins
+xbotcore_plugins:
+
+    homing:
+        thread: rt_main
+        type: homing
+
+    ros_io: {thread: nrt_main, type: ros_io}
+
+    ros_control: {thread: nrt_main, type: ros_control, params: {autostart: true}}
+
+    cartesio:
+      type: cartesio_plugin
+      thread: rt_main 
+      params:
+        enable_feedback: false
+        problem_description: file://$PWD/../stack/simple_id.stack
+
+
+# global parameters
+xbotcore_param:
+  /xbot/hal/joint_safety/filter_autostart: true
+  /xbot/hal/joint_safety/filter_cutoff_hz: 2.0
+  /xbot/hal/enable_safety: false
+
+
