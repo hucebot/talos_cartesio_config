@@ -4,6 +4,7 @@
   <arg name="foot_collision" default="default" />
   <arg name="disable_gazebo_camera" default="true" />
   <arg name="stack" default="simple_ik" />
+  <arg name="run_ros_server" default="true" />
 
   <!-- Robot description -->
   <param name= robot_description
@@ -63,6 +64,7 @@
   <arg name="rate" default="1000.0" />
   <arg name="prefix" default="" />
   <include file="$(find cartesian_interface)/launch/cartesio.launch">
+    <arg name="run_ros_server" value="$(arg run_ros_server)" />
     <arg name="rate" value="$(arg rate)" />
     <arg name="prefix" value="$(arg prefix)" />
     <arg name="is_model_floating_base" value="true" />

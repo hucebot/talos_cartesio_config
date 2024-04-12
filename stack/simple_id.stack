@@ -1,15 +1,15 @@
 solver_options:
-    regularization: 1e-2
+    regularization: 1e-3
     back_end: qpoases
 
 stack:
-    - [l_sole, r_sole, LEE, REE, com, base_orient, postural]
+    - [l_sole, r_sole, LEE, REE, com, mom, base_orient, postural, LFURF, LFLRF, LFULF, LFLLF, RFURF, RFLRF, RFULF, RFLLF]
 
     
 constraints: 
   - DynamicFeasibility
   - VelocityLimits
-  - JointLimits
+  #- JointLimits
   - LFURFlims
   - LFURFc
   - LFLRFlims
@@ -26,29 +26,31 @@ constraints:
   - RFULFc
   - RFLLFlims
   - RFLLFc
+  
+define: &force_weight 0.001
 
 l_sole:
     lib_name: libcartesio_acceleration_support.so
     type: Cartesian
-    lambda: 0.1
+    lambda: 0.01
     distal_link: left_sole_link
 
 r_sole:
     lib_name: libcartesio_acceleration_support.so
     type: Cartesian
-    lambda: 0.1
+    lambda: 0.01
     distal_link: right_sole_link
     
 LEE:
     lib_name: libcartesio_acceleration_support.so
     type: Cartesian
-    lambda: 0.1
+    lambda: 0.01
     distal_link: foo_ee_left
 
 REE:
     lib_name: libcartesio_acceleration_support.so
     type: Cartesian
-    lambda: 0.1
+    lambda: 0.01
     distal_link: foo_ee_right
 
 mom:
@@ -66,13 +68,12 @@ base_orient:
 com:
     lib_name: libcartesio_acceleration_support.so
     type: Com
-    lambda: 0.1
+    lambda: 0.01
 
 postural:
     lib_name: libcartesio_acceleration_support.so
     type: Postural
-    lambda: 0.1
-    lambda2: 0.1   
+    lambda: 0.01   
     disabled_joints: 
         - reference@v0
         - reference@v1
@@ -92,7 +93,7 @@ postural:
         - leg_right_4_joint
         - leg_right_5_joint
         - leg_right_6_joint
-    weight: 0.001
+    weight: 0.01
 
 VelocityLimits:
     lib_name: libcartesio_acceleration_support.so
@@ -127,6 +128,12 @@ LFURFc:
     type: FrictionCone
     link: left_foot_upper_right
     local: true
+    
+LFURF:
+    lib_name: libcartesio_acceleration_support.so
+    type: Force
+    link: left_foot_upper_right
+    weight: *force_weight
 
 LFLRFlims:
     lib_name: libcartesio_acceleration_support.so
@@ -141,6 +148,12 @@ LFLRFc:
     link: left_foot_lower_right
     local: true
 
+LFLRF:
+    lib_name: libcartesio_acceleration_support.so
+    type: Force
+    link: left_foot_lower_right
+    weight: *force_weight
+
 LFULFlims:
     lib_name: libcartesio_acceleration_support.so
     type: ForceLimits
@@ -154,6 +167,12 @@ LFULFc:
     link: left_foot_upper_left
     local: true
 
+LFULF:
+    lib_name: libcartesio_acceleration_support.so
+    type: Force
+    link: left_foot_upper_left
+    weight: *force_weight
+
 LFLLFlims:
     lib_name: libcartesio_acceleration_support.so
     type: ForceLimits
@@ -166,6 +185,12 @@ LFLLFc:
     type: FrictionCone
     link: left_foot_lower_left
     local: true
+    
+LFLLF:
+    lib_name: libcartesio_acceleration_support.so
+    type: Force
+    link: left_foot_lower_left
+    weight: 0.01
 
 RFURFlims:
     lib_name: libcartesio_acceleration_support.so
@@ -179,6 +204,12 @@ RFURFc:
     type: FrictionCone
     link: right_foot_upper_right
     local: true
+    
+RFURF:
+    lib_name: libcartesio_acceleration_support.so
+    type: Force
+    link: right_foot_upper_right
+    weight: *force_weight
 
 RFLRFlims:
     lib_name: libcartesio_acceleration_support.so
@@ -193,6 +224,12 @@ RFLRFc:
     link: right_foot_lower_right
     local: true
     
+RFLRF:
+    lib_name: libcartesio_acceleration_support.so
+    type: Force
+    link: right_foot_lower_right
+    weight: *force_weight
+    
 RFULFlims:
     lib_name: libcartesio_acceleration_support.so
     type: ForceLimits
@@ -205,6 +242,12 @@ RFULFc:
     type: FrictionCone
     link: right_foot_upper_left
     local: true
+    
+RFULF:
+    lib_name: libcartesio_acceleration_support.so
+    type: Force
+    link: right_foot_upper_left
+    weight: *force_weight
 
 RFLLFlims:
     lib_name: libcartesio_acceleration_support.so
@@ -219,3 +262,8 @@ RFLLFc:
     link: right_foot_lower_left
     local: true
 
+RFLLF:
+    lib_name: libcartesio_acceleration_support.so
+    type: Force
+    link: right_foot_lower_left
+    weight: *force_weight

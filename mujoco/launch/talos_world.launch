@@ -1,11 +1,11 @@
 <launch>
 
   
-  <arg name="world" default="$(find centauro_mujoco)/config/world.xml"/>
-  <arg name="simopt" default="$(find centauro_mujoco)/config/options.xml"/>
-  <arg name="sites" default="$(find centauro_mujoco)/config/sites.xml"/>
-  <arg name="ctrlcfg" default="$(find centauro_mujoco)/config/centauro.yaml"/>
-  <arg name="urdffile" default="$(find centauro_urdf)/urdf/centauro.urdf"/>
+  <arg name="world" default="$(find talos_cartesio_config)/mujoco/config/world.xml"/>
+  <arg name="simopt" default="$(find talos_cartesio_config)/mujoco/config/options.xml"/>
+  <arg name="sites" default="$(find talos_cartesio_config)/mujoco/config/sites.xml"/>
+  <arg name="ctrlcfg" default="$(find talos_cartesio_config)/mujoco/config/talos.yaml"/>
+  <arg name="urdffile" default="$(find talos_cartesio_config)/robots/talos.urdf"/>
 
   <node pkg="centauro_mujoco" type="centauro_mujoco.py" name="centauro_mujoco"
     args="--name centauro --urdf $(arg urdffile) --world $(arg world) --simopt $(arg simopt) --ctrlcfg $(arg ctrlcfg) --sites $(arg sites)"/>

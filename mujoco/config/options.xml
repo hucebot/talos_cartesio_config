@@ -12,5 +12,8 @@
 
         <exclude name="foot_1_exclude" body1="leg_left_4_link" body2="leg_left_6_link"/>
         <exclude name="foot_2_exclude" body1="leg_right_4_link" body2="leg_right_6_link"/>
+        
+        <exclude name="arm_1_exclude" body1="arm_right_5_link" body2="arm_right_7_link"/>
+        <exclude name="arm_2_exclude" body1="arm_left_5_link" body2="arm_left_7_link"/>
     </contact>
 </mujoco>
