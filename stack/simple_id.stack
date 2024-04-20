@@ -3,13 +3,14 @@ solver_options:
     back_end: qpoases
 
 stack:
-    - [l_sole, r_sole, LEE, REE, com, mom, base_orient, postural, LFURF, LFLRF, LFULF, LFLLF, RFURF, RFLRF, RFULF, RFLLF]
+    - [l_sole, r_sole, LEE, REE, base_orient,  postural, mom, com, LFURF, LFLRF, LFULF, LFLLF, RFURF, RFLRF, RFULF, RFLLF]
 
     
 constraints: 
-  - DynamicFeasibility
+  - torque_limits
+  #- DynamicFeasibility
   - VelocityLimits
-  #- JointLimits
+  - JointLimits
   - LFURFlims
   - LFURFc
   - LFLRFlims
@@ -27,53 +28,84 @@ constraints:
   - RFLLFlims
   - RFLLFc
   
-define: &force_weight 0.001
+define: &local true
+define: &contact_model point #surface
+  
+define: &force_weight 0.005
+define: &mu 0.8
+define: &contact_lambda 0.1
+define: &ee_lambda 0.1
+define: &com_lambda 0.1
+define: &com_weight 1.
+define: &base_lambda 0.05
+define: &postural_lambda 0.01
+define: &postural_weight 0.1
+define: &mom_lambda 0.0
+define: &mom_weight 0.01
+
+torque_limits:
+    lib_name: libcartesio_acceleration_support.so
+    type: TorqueLimits
+    contact_model: *contact_model
+    contacts:
+        - left_foot_upper_right
+        - left_foot_lower_right
+        - left_foot_upper_left
+        - left_foot_lower_left
+        - right_foot_upper_right
+        - right_foot_lower_right
+        - right_foot_upper_left
+        - right_foot_lower_left
 
 l_sole:
     lib_name: libcartesio_acceleration_support.so
     type: Cartesian
-    lambda: 0.01
+    lambda: *contact_lambda
     distal_link: left_sole_link
 
 r_sole:
     lib_name: libcartesio_acceleration_support.so
     type: Cartesian
-    lambda: 0.01
+    lambda: *contact_lambda
     distal_link: right_sole_link
     
 LEE:
     lib_name: libcartesio_acceleration_support.so
     type: Cartesian
-    lambda: 0.01
+    lambda: *ee_lambda
     distal_link: foo_ee_left
 
 REE:
     lib_name: libcartesio_acceleration_support.so
     type: Cartesian
-    lambda: 0.01
+    lambda: *ee_lambda
     distal_link: foo_ee_right
 
 mom:
     lib_name: libcartesio_acceleration_support.so
     type: AngularMomentum
-    lambda: 0.01
+    lambda: *mom_lambda
+    weight: *mom_weight
     
 base_orient:
     lib_name: libcartesio_acceleration_support.so
     type: Cartesian
-    lambda: 0.01
+    lambda: *base_lambda
     distal_link: base_link
     indices: [3, 4, 5]
     
 com:
     lib_name: libcartesio_acceleration_support.so
     type: Com
-    lambda: 0.01
+    lambda: *com_lambda
+    lambda2: 10.
+    indices: [0, 1]
+    weight: *com_weight
 
 postural:
     lib_name: libcartesio_acceleration_support.so
     type: Postural
-    lambda: 0.01   
+    lambda: *postural_lambda  
     disabled_joints: 
         - reference@v0
         - reference@v1
@@ -93,7 +125,7 @@ postural:
         - leg_right_4_joint
         - leg_right_5_joint
         - leg_right_6_joint
-    weight: 0.01
+    weight: *postural_weight
 
 VelocityLimits:
     lib_name: libcartesio_acceleration_support.so
@@ -106,6 +138,7 @@ JointLimits:
 DynamicFeasibility:
     lib_name: libcartesio_acceleration_support.so
     type: DynamicFeasibility
+    contact_model: *contact_model
     contacts:
         - left_foot_upper_right
         - left_foot_lower_right
@@ -122,18 +155,22 @@ LFURFlims:
     link: left_foot_upper_right
     min: [-1000, -1000, -1000, 0., 0., 0.]
     max: [1000, 1000, 1000, 0., 0., 0.]
+    contact_model: *contact_model
 
 LFURFc:
     lib_name: libcartesio_acceleration_support.so
     type: FrictionCone
     link: left_foot_upper_right
-    local: true
+    local: *local
+    contact_model: *contact_model
+    mu: *mu
     
 LFURF:
     lib_name: libcartesio_acceleration_support.so
     type: Force
     link: left_foot_upper_right
     weight: *force_weight
+    contact_model: *contact_model
 
 LFLRFlims:
     lib_name: libcartesio_acceleration_support.so
@@ -141,18 +178,22 @@ LFLRFlims:
     link: left_foot_lower_right
     min: [-1000, -1000, -1000, 0., 0., 0.]
     max: [1000, 1000, 1000, 0., 0., 0.]
+    contact_model: *contact_model
     
 LFLRFc:
     lib_name: libcartesio_acceleration_support.so
     type: FrictionCone
     link: left_foot_lower_right
-    local: true
+    local: *local
+    contact_model: *contact_model
+    mu: *mu
 
 LFLRF:
     lib_name: libcartesio_acceleration_support.so
     type: Force
     link: left_foot_lower_right
     weight: *force_weight
+    contact_model: *contact_model
 
 LFULFlims:
     lib_name: libcartesio_acceleration_support.so
@@ -160,18 +201,22 @@ LFULFlims:
     link: left_foot_upper_left
     min: [-1000, -1000, -1000, 0., 0., 0.]
     max: [1000, 1000, 1000, 0., 0., 0.]
+    contact_model: *contact_model
     
 LFULFc:
     lib_name: libcartesio_acceleration_support.so
     type: FrictionCone
     link: left_foot_upper_left
-    local: true
+    local: *local
+    contact_model: *contact_model
+    mu: *mu
 
 LFULF:
     lib_name: libcartesio_acceleration_support.so
     type: Force
     link: left_foot_upper_left
     weight: *force_weight
+    contact_model: *contact_model
 
 LFLLFlims:
     lib_name: libcartesio_acceleration_support.so
@@ -179,18 +224,22 @@ LFLLFlims:
     link: left_foot_lower_left
     min: [-1000, -1000, -1000, 0., 0., 0.]
     max: [1000, 1000, 1000, 0., 0., 0.]
+    contact_model: *contact_model
     
 LFLLFc:
     lib_name: libcartesio_acceleration_support.so
     type: FrictionCone
     link: left_foot_lower_left
-    local: true
+    local: *local
+    contact_model: *contact_model
+    mu: *mu
     
 LFLLF:
     lib_name: libcartesio_acceleration_support.so
     type: Force
     link: left_foot_lower_left
     weight: 0.01
+    contact_model: *contact_model
 
 RFURFlims:
     lib_name: libcartesio_acceleration_support.so
@@ -198,18 +247,22 @@ RFURFlims:
     link: right_foot_upper_right
     min: [-1000, -1000, -1000, 0., 0., 0.]
     max: [1000, 1000, 1000, 0., 0., 0.]
+    contact_model: *contact_model
   
 RFURFc:
     lib_name: libcartesio_acceleration_support.so
     type: FrictionCone
     link: right_foot_upper_right
-    local: true
+    local: *local
+    contact_model: *contact_model
+    mu: *mu
     
 RFURF:
     lib_name: libcartesio_acceleration_support.so
     type: Force
     link: right_foot_upper_right
     weight: *force_weight
+    contact_model: *contact_model
 
 RFLRFlims:
     lib_name: libcartesio_acceleration_support.so
@@ -217,18 +270,22 @@ RFLRFlims:
     link: right_foot_lower_right
     min: [-1000, -1000, -1000, 0., 0., 0.]
     max: [1000, 1000, 1000, 0., 0., 0.]
+    contact_model: *contact_model
     
 RFLRFc:
     lib_name: libcartesio_acceleration_support.so
     type: FrictionCone
     link: right_foot_lower_right
-    local: true
+    local: *local
+    contact_model: *contact_model
+    mu: *mu
     
 RFLRF:
     lib_name: libcartesio_acceleration_support.so
     type: Force
     link: right_foot_lower_right
     weight: *force_weight
+    contact_model: *contact_model
     
 RFULFlims:
     lib_name: libcartesio_acceleration_support.so
@@ -236,18 +293,22 @@ RFULFlims:
     link: right_foot_upper_left
     min: [-1000, -1000, -1000, 0., 0., 0.]
     max: [1000, 1000, 1000, 0., 0., 0.]
+    contact_model: *contact_model
     
 RFULFc:
     lib_name: libcartesio_acceleration_support.so
     type: FrictionCone
     link: right_foot_upper_left
-    local: true
+    local: *local
+    contact_model: *contact_model
+    mu: *mu
     
 RFULF:
     lib_name: libcartesio_acceleration_support.so
     type: Force
     link: right_foot_upper_left
     weight: *force_weight
+    contact_model: *contact_model
 
 RFLLFlims:
     lib_name: libcartesio_acceleration_support.so
@@ -255,15 +316,19 @@ RFLLFlims:
     link: right_foot_lower_left
     min: [-1000, -1000, -1000, 0., 0., 0.]
     max: [1000, 1000, 1000, 0., 0., 0.]
+    contact_model: *contact_model
     
 RFLLFc:
     lib_name: libcartesio_acceleration_support.so
     type: FrictionCone
     link: right_foot_lower_left
-    local: true
+    local: *local
+    contact_model: *contact_model
+    mu: *mu
 
 RFLLF:
     lib_name: libcartesio_acceleration_support.so
     type: Force
     link: right_foot_lower_left
     weight: *force_weight
+    contact_model: *contact_model
