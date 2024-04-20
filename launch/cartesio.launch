@@ -1,19 +1,18 @@
 <launch>
-  <arg name="enable_crane" default="false" />
-  <arg name="test" default="false" />
-  <arg name="foot_collision" default="default" />
-  <arg name="disable_gazebo_camera" default="true" />
   <arg name="stack" default="simple_ik" />
   <arg name="run_ros_server" default="true" />
 
   <!-- Robot description -->
-  <param name= robot_description
+  <!--param name= robot_description
     command="$(find xacro)/xacro --inorder
     	'$(find talos_cartesio_config)/robots/talos.urdf.xacro'
-    	enable_crane:=$(arg enable_crane)
-    	test:=$(arg test)
-    	foot_collision:=$(arg foot_collision)
-    	disable_gazebo_camera:=$(arg disable_gazebo_camera)" />
+    	enable_crane:=false
+    	test:=false
+    	foot_collision:="default"
+    	disable_gazebo_camera:=true" /-->
+
+  <param name="robot_description"
+    textfile="$(find talos_cartesio_config)/robots/talos.urdf" />
 
   <param name="robot_description_semantic"
     textfile="$(find talos_cartesio_config)/robots/talos.srdf" />
@@ -69,6 +68,7 @@
     <arg name="prefix" value="$(arg prefix)" />
     <arg name="is_model_floating_base" value="true" />
     <arg name="world_frame_link" default="left_sole_link" />
+    <!--arg name="prefix" value="gdb -ex run --args"/-->
   </include>
 
   <arg name="gui" default="true" />
