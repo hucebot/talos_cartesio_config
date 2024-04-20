@@ -18,4 +18,13 @@ To run the ID just run on the terminal:
 
 ```reset && mon launch talos_cartesio_config cartesio.launch stack:=simple_id```
 
-Interactive markers and sliders works as in the IK case.
+Interactive markers and sliders work as in the IK case.
+
+Pose script:
+------------
+Through CarteSI/O Python API is possible to send way-points using a script to the OpenSoT defined tasks.
+An example is present in the ```python``` folder. To run it just run:
+
+```python cartesio_simple_poses.py```
+
+within the folder. The left arm will execute 4 waypoints starting from the actual pose. Notice that the same script will work both using the IK and the ID stack.
