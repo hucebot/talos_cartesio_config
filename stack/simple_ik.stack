@@ -38,13 +38,13 @@ BaseOrientation:
    
 Ree:
     type: "Cartesian"
-    distal_link: "arm_right_7_link"
+    distal_link: "foo_ee_right"
     base_link: "world"
     lambda: 0.1
 
 Lee:
     type: "Cartesian"
-    distal_link: "arm_left_7_link"
+    distal_link: "foo_ee_left"
     base_link: "world"
     lambda: 0.1
     
