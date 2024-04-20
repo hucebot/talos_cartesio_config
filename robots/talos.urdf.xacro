@@ -2,7 +2,8 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="talos">
 
 
-<xacro:include filename="$(find talos_description)/robots/talos_full_fake_grippers.urdf.xacro"/>
+<!--xacro:include filename="$(find talos_description)/robots/talos_full_fake_grippers.urdf.xacro"/-->
+<xacro:include filename="$(find talos_cartesio_config)/robots/talos.urdf"/>
 
 <link name="world"/>
   <joint name="reference" type="floating">
