@@ -1,6 +1,6 @@
 <mujoco>
     <compiler angle="radian" />
-    <option timestep="0.0002"/>
+    <option timestep="0.001" iterations="50" tolerance="1e-10" solver="Newton" integrator="RK4" jacobian="dense" cone="pyramidal"/>
     <size njmax="1000" nconmax="200"/>
     <contact>
         <exclude name="torso_1_exclude" body1="torso_1_link" body2="torso_2_link"/>
@@ -15,5 +15,22 @@
         
         <exclude name="arm_1_exclude" body1="arm_right_5_link" body2="arm_right_7_link"/>
         <exclude name="arm_2_exclude" body1="arm_left_5_link" body2="arm_left_7_link"/>
+        
+        <exclude name="arm_3_exclude" body1="arm_right_7_link" body2="leg_right_3_link"/>
+        <exclude name="arm_4_exclude" body1="arm_left_7_link" body2="leg_left_3_link"/>
+        <exclude name="arm_5_exclude" body1="foo_ee_right" body2="leg_right_3_link"/>
+        <exclude name="arm_6_exclude" body1="foo_ee_left" body2="leg_left_3_link"/>
+        <exclude name="arm_7_exclude" body1="wrist_right_ft_tool_link" body2="leg_right_3_link"/>
+        <exclude name="arm_8_exclude" body1="wrist_left_ft_tool_link" body2="leg_left_3_link"/>
+        <exclude name="arm_9_exclude" body1="wrist_right_ft_link" body2="leg_right_3_link"/>
+        <exclude name="arm_10_exclude" body1="wrist_left_ft_link" body2="leg_left_3_link"/>
     </contact>
+    
+    <default>
+        <!--geom contype="0" conaffinity="1" size="0.1"/-->
+        <joint damping="6" frictionloss="1"/>
+        
+      	
+    </default>
+    
 </mujoco>

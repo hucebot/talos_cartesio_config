@@ -14,9 +14,9 @@ motor_pd:
   leg_*_6_joint: [3000, 60]
   torso_*: [3000, 60]
 
-motor_vel:
-  j_wheel_*: [1]
-  neck_velodyne: [1]
+#motor_vel:
+#  j_wheel_*: [1]
+#  neck_velodyne: [1]
 
 q_init:
   leg_left_1_joint: -7.94464787047849e-13

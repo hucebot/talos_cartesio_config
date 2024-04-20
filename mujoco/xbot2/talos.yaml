@@ -30,8 +30,9 @@ xbotcore_plugins:
       type: cartesio_plugin
       thread: rt_main 
       params:
-        enable_feedback: false
-        problem_description: file://$PWD/../stack/simple_id.stack
+        enable_feedback: true
+        problem_description: file://$PWD/../../stack/simple_id.stack
+        world_frame_link: "left_sole_link"
 
 
 # global parameters
