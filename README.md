@@ -28,3 +28,9 @@ An example is present in the ```python``` folder. To run it just run:
 ```python cartesio_simple_poses.py```
 
 within the folder. The left arm will execute 4 waypoints starting from the actual pose. Notice that the same script will work both using the IK and the ID stack.
+
+Whole-Body Inverse Dynamics using OpenSoT Python API:
+-----------------------------------------------------
+Inside the ```python``` folder just run:
+
+```python wbid.py```
