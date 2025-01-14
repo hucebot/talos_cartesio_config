@@ -7,7 +7,7 @@
   <arg name="ctrlcfg" default="$(find talos_cartesio_config)/mujoco/config/talos.yaml"/>
   <arg name="urdffile" default="$(find talos_cartesio_config)/robots/talos.urdf"/>
 
-  <node pkg="centauro_mujoco" type="centauro_mujoco.py" name="centauro_mujoco"
-    args="--name centauro --urdf $(arg urdffile) --world $(arg world) --simopt $(arg simopt) --ctrlcfg $(arg ctrlcfg) --sites $(arg sites)"/>
+  <node pkg="talos_cartesio_config" type="simulator_wrapper.bash" name="talos_mujoco"
+    args="--name talos --urdf $(arg urdffile) --world $(arg world) --simopt $(arg simopt) --ctrlcfg $(arg ctrlcfg) --sites $(arg sites)"/>
 
 </launch>
