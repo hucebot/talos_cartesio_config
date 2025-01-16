@@ -33,4 +33,9 @@
       	
     </default>
     
+    <sensor>
+        <accelerometer name="imu_link_acc" site="imu_link"/>
+        <gyro name="imu_link_gyro" site="imu_link"/>
+    </sensor>
+    
 </mujoco>
