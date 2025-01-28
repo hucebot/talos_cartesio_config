@@ -40,18 +40,18 @@
   </group>
 
   <group_state group="chains" name="home">
-    <joint name="leg_left_1_joint" value=" -7.94464787047849e-13"/>
-    <joint name="leg_left_2_joint" value=" -3.619964318427297e-05"/>
-    <joint name="leg_left_3_joint" value=" -0.6898316711444555"/>
+    <joint name="leg_left_1_joint" value=" -7.94464787047849e-13"/>   <!-- hip yaw  -->
+    <joint name="leg_left_2_joint" value=" 0.1"/>                     <!-- hip roll  -->
+    <joint name="leg_left_3_joint" value=" -0.6898316711444555"/>     <!-- hip pitch  -->
     <joint name="leg_left_4_joint" value=" 1.3311371331572148"/>
-    <joint name="leg_left_5_joint" value=" -0.6413054620145101"/>
-    <joint name="leg_left_6_joint" value=" 3.619964990352649e-05"/>
+    <joint name="leg_left_5_joint" value=" -0.6413054620145101"/>     <!-- ankle pitch  -->
+    <joint name="leg_left_6_joint" value=" -0.1"/>                    <!-- ankle roll  -->
     <joint name="leg_right_1_joint" value=" -7.94464787047849e-13"/>
-    <joint name="leg_right_2_joint" value=" -3.619964318427297e-05"/>
+    <joint name="leg_right_2_joint" value=" -0.1"/>
     <joint name="leg_right_3_joint" value=" -0.6898316711444555"/>
     <joint name="leg_right_4_joint" value=" 1.3311371331572148"/>
     <joint name="leg_right_5_joint" value=" -0.6413054620145101"/>
-    <joint name="leg_right_6_joint" value=" 3.619964990352649e-05"/>
+    <joint name="leg_right_6_joint" value=" 0.1"/>
     <joint name="torso_1_joint" value=" 0.0002205888120137109"/>
     <joint name="torso_2_joint" value=" 0.027120105655840155"/>
     <joint name="arm_left_1_joint" value=" -0.03397840856227864"/>
